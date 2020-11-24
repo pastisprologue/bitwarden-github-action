@@ -1,0 +1,15 @@
+on: push
+
+jobs:
+  bw_test:
+    runs-on: ubuntu-latest
+    name: Test Access to BW
+    steps:
+      - name: creds
+        uses: ./
+        with:
+          bitwarden-username: ${{ github.BW_USERNAME }}
+          bitwarden-password: ${{ github.BW_PASSWORD }}
+      - run: |
+          bw list items --search gha-test | jq -r '.[0].notes' > gha-test-notes.txt
+          cat gha-test-notes.txt
