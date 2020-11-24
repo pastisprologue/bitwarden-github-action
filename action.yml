@@ -1,0 +1,27 @@
+---
+name: Bitwarden GitHub Action
+author: Michael Chiasson <michaeljchiasson@gmail.com>
+description: Bitwarden CLI in your GitHub Actions workflow.
+branding:
+  icon: terminal
+  color: gray-dark
+runs:
+  using: node12
+  main: build/index.js
+inputs:
+  bitwarden-version:
+    description: The Bitwarden CLI version to install. (use any semver/dist-tag available)
+    default: latest
+  bitwarden-username:
+    description: Your Bitwarden username, for authentication.
+  bitwarden-password:
+    description: Your Bitwarden password, for authentication. (use with secrets)
+  bitwarden-packager:
+    description: The package manager used to install the Bitwarden CLI. (can be yarn or npm)
+    default: yarn
+  bitwarden-cache:
+    description: If Bitwarden should be stored in the GitHub Actions cache (can be true or false)
+    default: false
+  bitwarden-cache-key:
+    description: A custom remote cache key to use (best to let GitHub Actions handle it)
+

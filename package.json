@@ -1,0 +1,52 @@
+{
+	"private": true,
+	"name": "bitwarden-github-action",
+	"version": "0.1.0",
+	"description": "Bitwarden CLI in your GitHub Actions workflow",
+	"main": "build/index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pastisprologue/bitwarden-github-action.git"
+	},
+	"author": "Michael Chiasson <michaeljchiassion@gmail.com>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/pastisprologue/bitwarden-github-action/issues"
+	},
+	"homepage": "https://github.com/pastisprologue/bitwarden-github-action#readme",
+	"scripts": {
+		"test": "jest",
+		"lint": "tsc --noEmit && eslint --ext ts ./src ./tests",
+		"build": "ncc build src/index.ts --out build",
+		"clean": "rimraf build"
+	},
+	"dependencies": {
+		"@actions/cache": "github:cypress-io/github-actions-cache#8bec6cc",
+		"@actions/core": "^1.2.6",
+		"@actions/exec": "^1.0.4",
+		"@actions/io": "^1.0.2",
+		"@actions/tool-cache": "^1.5.5",
+		"libnpm": "^3.0.1"
+	},
+	"devDependencies": {
+		"@types/jest": "^26.0.4",
+		"@types/node": "^12.12.49",
+		"@typescript-eslint/eslint-plugin": "^3.6.1",
+		"@typescript-eslint/parser": "^3.6.1",
+		"@zeit/ncc": "^0.22.3",
+		"eslint": "^7.4.0",
+		"eslint-plugin-jest": "^23.18.0",
+		"husky": "^4.2.5",
+		"jest": "^26.0.1",
+		"jest-circus": "^26.1.0",
+		"prettier": "^2.2.0",
+		"rimraf": "^3.0.2",
+		"ts-jest": "^26.1.2",
+		"typescript": "^3.9.6"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "yarn build && git add build"
+		}
+	}
+}
