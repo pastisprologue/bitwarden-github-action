@@ -5,6 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Test Access to BW
     steps:
+      - name: checkout
+        uses: actions/checkout@v2
       - name: creds
         uses: ./
         with:
