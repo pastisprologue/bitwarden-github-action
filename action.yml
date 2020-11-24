@@ -8,6 +8,7 @@ branding:
 runs:
   using: node12
   main: build/index.js
+  post: build/cleanup/index.js
 inputs:
   bitwarden-version:
     description: The Bitwarden CLI version to install. (use any semver/dist-tag available)
@@ -24,4 +25,3 @@ inputs:
     default: false
   bitwarden-cache-key:
     description: A custom remote cache key to use (best to let GitHub Actions handle it)
-

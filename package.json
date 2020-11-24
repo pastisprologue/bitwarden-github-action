@@ -17,7 +17,7 @@
 	"scripts": {
 		"test": "jest",
 		"lint": "tsc --noEmit && eslint --ext ts ./src ./tests",
-		"build": "ncc build src/index.ts --out build",
+		"build": "ncc build src/index.ts --out build && ncc build src/cleanup.ts --out build/cleanup",
 		"clean": "rimraf build"
 	},
 	"dependencies": {
