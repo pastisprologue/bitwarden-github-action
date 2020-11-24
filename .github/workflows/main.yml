@@ -10,8 +10,8 @@ jobs:
       - name: creds
         uses: ./
         with:
-          bitwarden-username: ${{ github.BW_USERNAME }}
-          bitwarden-password: ${{ github.BW_PASSWORD }}
+          bitwarden-username: ${{ secrets.BW_USERNAME }}
+          bitwarden-password: ${{ secrets.BW_PASSWORD }}
       - run: |
           bw list items --search gha-test | jq -r '.[0].notes' > gha-test-notes.txt
           cat gha-test-notes.txt
