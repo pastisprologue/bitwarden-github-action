@@ -24988,12 +24988,14 @@ function authWithCredentials(username, password) {
         // github actions toolkit will handle commands with `.cmd` on windows, we need that
         const bin = process.platform === 'win32' ? 'bw.cmd' : 'bw';
         yield cli.exec(bin, ['login', `${username}`, `${password}`], {
+            silent: true,
             listeners: {
                 stdout: (data) => {
                     const regex = /"(\S*)"/;
                     const matches = regex.exec(data.toString());
                     if (matches && matches.length >= 2) {
                         const sessionKey = matches[1];
+                        core.setSecret(sessionKey);
                         core.exportVariable('BW_SESSION', sessionKey);
                     }
                     else {

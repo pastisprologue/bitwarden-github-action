@@ -25,12 +25,14 @@ export async function authWithCredentials(
   const bin = process.platform === 'win32' ? 'bw.cmd' : 'bw';
 
   await cli.exec(bin, ['login', `${username}`, `${password}`], {
+    silent: true,
     listeners: {
       stdout: (data: Buffer) => {
         const regex = /"(\S*)"/;
         const matches = regex.exec(data.toString());
         if (matches && matches.length >= 2) {
           const sessionKey = matches[1];
+          core.setSecret(sessionKey);
           core.exportVariable('BW_SESSION', sessionKey);
         } else {
           core.error('Failed to set BW Session Key!');
